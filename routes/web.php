@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DataTahunController;
 use App\Http\Controllers\KecamatanController;
+use App\Models\Kecamatan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,6 +34,14 @@ Route::group(['prefix' => 'admin'], function () {
     Route::post('data', [DataTahunController::class, 'store'])->name('admin.datatahun.store');
     Route::put('data/{id}', [DataTahunController::class, 'update'])->name('admin.datatahun.update');
     Route::delete('data/{id}', [DataTahunController::class, 'delete'])->name('admin.datatahun.delete');
+
+    Route::get('kecamatan', [KecamatanController::class, 'index'])->name('admin.kecamatan.index');
+    Route::get('kecamatan/form', [KecamatanController::class, 'create'])->name('admin.kecamatan.create');
+    Route::get('kecamatan/{id}/edit', [KecamatanController::class, 'edit'])->name('admin.kecamatan.edit');
+    Route::post('kecamatan', [KecamatanController::class, 'store'])->name('admin.kecamatan.store');
+    Route::put('kecamatan/{id}', [KecamatanController::class, 'update'])->name('admin.kecamatan.update');
+    Route::delete('kecamatan/{id}', [KecamatanController::class, 'destroy'])->name('admin.kecamatan.destroy');
+
 
     Route::get('peta', [DashboardController::class, 'peta'])->name('admin.peta');
 

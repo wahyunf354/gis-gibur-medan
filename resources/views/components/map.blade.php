@@ -39,11 +39,15 @@ legend.onAdd = function (map) {
     }
     return div;
 };
+
 legend.addTo(map);
+
 function getColor(d) {
   return d === "Zona Hijau" ? "#236316" :  d == "Zona Oranye" ? "#f5c842" : d == "Zona Merah" ? "#871313" : "#871313" 
 }
+
 const keysToExtract = ['jml_sembuh_gizi_buruk', 'rasio'];
+
 (async () => {
   let res  = await fetch('<?= url('getKecamatan') ?>')
   let data = await res.json()

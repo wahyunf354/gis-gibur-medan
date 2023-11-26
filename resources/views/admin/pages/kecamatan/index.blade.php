@@ -8,7 +8,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0">Tabel Data Gizi Buruk Kota Medan Per Tahun</h1>
+          <h1 class="m-0">Tabel Data Kecamatan Kota Medan</h1>
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
@@ -35,13 +35,7 @@
             <div class="card-header row ">
               <div class="col-2 ">
 
-                <a href="{{route('admin.datatahun.create')}}" class="btn btn-primary btn-sm mb-2" > <i class="fas fa-plus"></i> Tambah Data</a>
-                <select name="tahun" id="tahun" class="custom-select">
-                  <option value=""> -- Tahun -- </option>
-                  @foreach($years as $year)
-                  <option value="{{$year->tahun}}">{{$year->tahun}}</option>
-                  @endforeach
-                </select>
+                <a href="{{route('admin.kecamatan.create')}}" class="btn btn-primary btn-sm mb-2" > <i class="fas fa-plus"></i> Tambah Data</a>
               </div>
             </div>
             <!-- /.card-header -->
@@ -50,28 +44,22 @@
                 <thead>
                 <tr>
                   <th>No</th>
-                  <th>Kecamatan</th>
-                  <th>Tahun</th>
-                  <th>Kasus</th>
-                  <th>Meninggal</th>
-                  <th>Sembuh</th>
+                  <th>Nama</th>
+                  <th>Jumlah Penduduk</th>
                   <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                  @foreach($dataGiziBurukTahun as $key=> $row)
+                  @foreach($kecamatans as $key=> $row)
                     <tr>
                       <td>{{$key+1}}</td>
-                      <td>{{$row->kecamatan->name}}</td>
-                      <td>{{$row->tahun}}</td>
-                      <td>{{$row->jml_kasus}}</td>
-                      <td>{{$row->jml_meninggal}}</td>
-                      <td>{{$row->jml_sembuh}}</td>
+                      <td>{{$row->name}}</td>
+                      <td>{{$row->jmlppdk}}</td>
                       <td>
-                        <form action="{{route('admin.datatahun.delete', $row->id)}}" method="POST" >
+                        <form action="{{route('admin.kecamatan.destroy', $row->id)}}" method="POST" >
                           @method('DELETE')
                           @csrf
-                          <a href="{{route('admin.datatahun.edit', $row->id)}}" class="btn btn-sm btn-info" >
+                          <a href="{{route('admin.kecamatan.edit', $row->id)}}" class="btn btn-sm btn-info" >
                             <i class="fas fa-pen-fancy"></i>
                           </a>
                           <button href="#" class="btn btn-sm btn-danger" >
@@ -98,18 +86,6 @@
 
 @section('script')
 <script>
-  const yearFilter =document.getElementById("tahun");
-  const urlParams =  new URLSearchParams(window.location.search);
-  const year = urlParams.get('year');
-  console.log(year)
-  if(year) {
-    yearFilter.value = year
-  }
-  
-  yearFilter.addEventListener('change', (e) => {
-    window.location.href = '?year='+e.target.value;
-  })
-  
   $(function () {
     $('#table_data_gibur').DataTable({
       "paging": true,

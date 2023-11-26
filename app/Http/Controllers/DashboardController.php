@@ -26,7 +26,6 @@ class DashboardController extends Controller
 
     function grafik()
     {
-
         return view('admin.pages.grafik');
     }
 }

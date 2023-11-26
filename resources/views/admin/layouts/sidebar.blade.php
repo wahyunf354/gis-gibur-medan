@@ -32,6 +32,15 @@
             </li>
 
             <li class="nav-item">
+              <a href="{{route('admin.kecamatan.index')}}" class="nav-link">
+                <i class="nav-icon fas fa-table"></i>
+                <p>
+                  Kecamatan
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
               <a href="{{route('admin.peta')}}" class="nav-link">
                 <i class="nav-icon far fa-map"></i>
                 <p>
